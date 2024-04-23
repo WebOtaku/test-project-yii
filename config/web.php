@@ -32,6 +32,8 @@ $config = [
                         // Константы
                         'ADD_BTN_STR' => 'Добавить',
                         'SAVE_BTN_STR' => 'Сохранить',
+                        'DEL_BTN_STR' => 'Удалить',
+                        'UPDATE_BTN_STR' => 'Обновить',
                         'IP_LIST_STR' => 'Список IP-адресов',
                         'IP_UPDATE_STR' => 'Обновление информации об IP-адресе',
                         'IP_ADD_STR' => 'Добавление IP-адреса',
@@ -47,7 +49,8 @@ $config = [
                         'Url' => ['class' => '\yii\helpers\Url'],
                         'ActionColumn' => ['class' => '\yii\grid\ActionColumn'],
                         'CustomGridView' => ['class' => '\app\widgets\CustomGridView'],
-                        'SerialColumn' => ['class' => '\yii\grid\SerialColumn']
+                        'SerialColumn' => ['class' => '\yii\grid\SerialColumn'],
+                        'DetailView' => ['class' => '\yii\widgets\DetailView']
                     ],
                     'uses' => ['yii\bootstrap'],
                     'extensions' => [
@@ -65,7 +68,7 @@ $config = [
         ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
-            'cookieValidationKey' => 'eMqi8IbChzep0rCcY-1S27FMnpR9P_fD',
+            'cookieValidationKey' => 'eMqi8IbChzep0rCcY-1S27FMnpR9P_fD', // getenv('APP_KEY')
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',

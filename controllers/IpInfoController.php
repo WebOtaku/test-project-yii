@@ -63,7 +63,7 @@ class IpInfoController extends Controller
      */
     public function actionView($ip)
     {
-        return $this->render('view', [
+        return $this->render('view.twig', [
             'model' => $this->findModel($ip),
         ]);
     }
