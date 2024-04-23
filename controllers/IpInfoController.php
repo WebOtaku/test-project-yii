@@ -11,7 +11,7 @@ use yii\filters\VerbFilter;
 use yii\data\Pagination;
 
 /**
- * IpInfoController implements the CRUD actions for IpInfo model.
+ * IpInfoController реализует CRUD для модели IpInfo
  */
 class IpInfoController extends Controller
 {
@@ -34,8 +34,7 @@ class IpInfoController extends Controller
     }
 
     /**
-     * Lists all IpInfo models.
-     *
+     * Список всех моделей IpInfo.
      * @return string
      */
     public function actionIndex()
@@ -57,10 +56,10 @@ class IpInfoController extends Controller
     }
 
     /**
-     * Displays a single IpInfo model.
-     * @param string $ip Ip
+     * Отображает единичный экземпляр модели IpInfo.
+     * @param string $ip IP-адрес
      * @return string
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException если модель не может быть найдена
      */
     public function actionView($ip)
     {
@@ -70,8 +69,8 @@ class IpInfoController extends Controller
     }
 
     /**
-     * Creates a new IpInfo model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Создает новый экземпляр модели IpInfo
+     * Если экземпляр был успешно создан, то будет выполнено перенаправление на страницу просмотра.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
@@ -106,15 +105,17 @@ class IpInfoController extends Controller
     }
 
     /**
-     * Updates an existing IpInfo model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param string $ip Ip
+     * Обновляет существующую модель IpInfo.
+     * Если обновление успешно, то будет выполнено перенаправление на страницу просмотра.
+     * @param string $ip IP-адрес
      * @return string|\yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException если модель не может быть найдена
      */
     public function actionUpdate($ip)
     {
         $model = $this->findModel($ip);
+
+        $model->scenario = IpInfo::SCENARIO_UPDATE;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'ip' => $model->ip]);
@@ -126,25 +127,25 @@ class IpInfoController extends Controller
     }
 
     /**
-     * Deletes an existing IpInfo model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $ip Ip
+     * Удаляет существующую модель IpInfo.
+     * Если удаление успешно, то будет выполнено перенаправление на страницу 'index'.
+     * @param string $ip IP-адрес
      * @return \yii\web\Response
-     * @throws NotFoundHttpException if the model cannot be found
+     * @throws NotFoundHttpException если модель не может быть найдена
      */
     public function actionDelete($ip)
     {
         $this->findModel($ip)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['/']);
     }
 
     /**
-     * Finds the IpInfo model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param string $ip Ip
-     * @return IpInfo the loaded model
-     * @throws NotFoundHttpException if the model cannot be found
+     * Находит модель IpInfo на основе значения ее первичного ключа.
+     * Если модель не найдена, будет выброшено исключение HTTP 404.
+     * @param string $ip IP-адрес
+     * @return IpInfo загружаемая модель
+     * @throws NotFoundHttpException если модель не может быть найдена
      */
     protected function findModel($ip)
     {

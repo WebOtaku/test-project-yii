@@ -5,12 +5,12 @@ namespace app\models;
 use Yii;
 
 /**
- * This is the model class for table "ip_info".
+ * Модель представляющая данные о местоположении IP-адреса
  *
- * @property string $ip
- * @property string|null $country
- * @property string|null $region
- * @property string|null $city
+ * @property string $ip IP-адрес
+ * @property string|null $country страна
+ * @property string|null $region регион
+ * @property string|null $city город
  */
 class IpInfo extends \yii\db\ActiveRecord
 {
@@ -34,6 +34,9 @@ class IpInfo extends \yii\db\ActiveRecord
             [['ip', 'country', 'region', 'city'], 'string', 'max' => 255],
             [['ip'], 'unique'],
             [['ip'], 'validateIP'],
+            [['country', 'region', 'city'], 'filter', 'filter' => function($value) {
+                return ($value === '') ? null : $value;
+            }],
         ];
     }
 
@@ -50,6 +53,9 @@ class IpInfo extends \yii\db\ActiveRecord
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function scenarios()
     {
         $scenarios = parent::scenarios();
@@ -57,6 +63,11 @@ class IpInfo extends \yii\db\ActiveRecord
         return $scenarios;
     }
 
+
+    /**
+     * @param string $attribute атрибут проверяемый в настоящее время
+     * @param array $params дополнительные пары имя-значение, заданное в правиле
+     */
     public function validateIP($attribute, $params) 
     {
         if (!filter_var($this->$attribute, FILTER_VALIDATE_IP)) {

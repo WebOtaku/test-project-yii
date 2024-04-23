@@ -8,7 +8,7 @@
 {# @var app\models\IpInfoSearch $searchModel #}
 {# @var yii\data\ActiveDataProvider $dataProvider #}
 
-{{ set(this, 'title', 'Список IP адресов') }}
+{{ set(this, 'title', IP_LIST_STR) }}
 
 {% set params = this.params|merge({'breadcrumbs' : [
     this.title
@@ -19,7 +19,7 @@
 <div class="ip-info-index">
     <h1>{{ html.encode(this.title) }}</h1>
     <p>
-        {{ html.a('Добавить IP', ['create'], {'class' : 'btn btn-success'}) | raw }}
+        {{ html.a(ADD_BTN_STR, ['create'], {'class' : 'btn btn-success'}) | raw }}
     </p>
     
     {{ custom_grid_view_widget({

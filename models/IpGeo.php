@@ -9,9 +9,11 @@ use yii\base\Model;
 
 /**
  * Модель представляющая данные о местоположении IP-адреса
- * @property string|null $geoplugin_countryName
- * @property string|null $geoplugin_regionName
- * @property string|null $geoplugin_city
+ * из ответа от сервиса www.geoplugin.net
+ * 
+ * @property string|null $geoplugin_countryName страна
+ * @property string|null $geoplugin_regionName регион
+ * @property string|null $geoplugin_city город
  */
 class IpGeo extends Model
 {
@@ -26,9 +28,15 @@ class IpGeo extends Model
     {
         return [
             [['geoplugin_countryName', 'geoplugin_regionName', 'geoplugin_city'], 'string', 'max' => 255],
+            [['geoplugin_countryName', 'geoplugin_regionName', 'geoplugin_city'], 'filter', 'filter' => function ($value) {
+                return ($value === '') ? null : $value;
+            }],
         ];
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function fields()
     {
         return [
@@ -36,18 +44,5 @@ class IpGeo extends Model
             'region' => 'geoplugin_regionName',
             'city' => 'geoplugin_city',
         ];
-    }
-
-    public function toArray(array $fields = [], array $expand = [], $recursive = true)
-    {
-        $arr = parent::toArray($fields, $expand, $recursive);
-
-        foreach ($arr as $key => $value) {
-            if ($value === "") {
-                $arr[$key] = null;
-            }
-        }
-
-        return $arr;
     }
 }

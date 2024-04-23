@@ -11,7 +11,7 @@
     {{ form.field(model, 'ip').textInput({'maxlength' : true}) | raw }}
 
     <div class="form-group">
-        {{ html.submitButton('Добавить', {'class' : 'btn btn-success'}) | raw}}
+        {{ html.submitButton(ADD_BTN_STR, {'class' : 'btn btn-success'}) | raw}}
     </div>
 
     {{ active_form_end() }}

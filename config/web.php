@@ -9,6 +9,7 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
+    'language' => 'ru-RU', // Язык приложения
     'bootstrap' => ['log'],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -28,13 +29,17 @@ $config = [
                         'auto_reload' => true,
                     ],
                     'globals' => [
-                        //'html' => ['class' => '\yii\bootstrap5\Html'],
-                        'url' => ['class' => '\yii\helpers\Url'],
+                        // Константы
+                        'ADD_BTN_STR' => 'Добавить',
+                        'SAVE_BTN_STR' => 'Сохранить',
+                        'IP_LIST_STR' => 'Список IP-адресов',
+                        'IP_UPDATE_STR' => 'Обновление информации об IP-адресе',
+                        'IP_ADD_STR' => 'Добавление IP-адреса',
+                        'UPDATE_STR' => 'Обновление',
+                        // Классы
                         'Yii' => ['class' => '\Yii'],
                         'NavBar' => ['class' => '\yii\bootstrap5\NavBar'],
                         'Nav' => ['class' => '\yii\bootstrap5\Nav'],
-                        'Alert' => ['class' => '\app\widgets\Alert'],
-                        //'Alert' => ['class' => 'yii\bootstrap5\Alert'],
                         'Breadcrumbs' => ['\yii\bootstrap5\Breadcrumbs'],
                         'ActiveForm' => ['class' => '\yii\bootstrap5\ActiveForm'],
                         'LinkPager' => ['class' => '\yii\bootstrap5\LinkPager'],

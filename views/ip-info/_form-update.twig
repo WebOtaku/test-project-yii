@@ -15,7 +15,7 @@
     {{ form.field(model, 'city').textInput({'maxlength' : true}) | raw }}
 
     <div class="form-group">
-        {{ html.submitButton('Сохранить', {'class' : 'btn btn-success'}) | raw}}
+        {{ html.submitButton(SAVE_BTN_STR, {'class' : 'btn btn-success'}) | raw}}
     </div>
 
     {{ active_form_end() }}

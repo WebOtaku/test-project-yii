@@ -1,12 +1,12 @@
 {# @var yii\web\View $this #}
 {# @var app\models\IpInfo $model #}
 
-{{ set(this, 'title', 'Обновление информации об IP: ' ~ model.ip) }}
+{{ set(this, 'title', IP_UPDATE_STR ~ ': ' ~ model.ip) }}
 
 {% set params = this.params|merge({'breadcrumbs' : [
-    {'label' :'Список IP адресов', 'url' : ['index']},
+    {'label' : IP_LIST_STR, 'url' : ['index']},
     {'label' : model.ip, 'url' : {0 : 'view', 'ip' : model.ip}},
-    'Обновление'
+    UPDATE_STR
 ]}) %}
 
 {{ set(this, 'params', params) }}
