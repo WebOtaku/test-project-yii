@@ -1,0 +1,23 @@
+{{ use('yii/widgets/ActiveForm') }}
+
+{# @var yii\web\View $this #}
+{# @var app\models\IpInfo $model #}
+{# @var yii\widgets\ActiveForm $form #}
+
+<div class="ip-info-form">
+
+    {% set form = active_form_begin() %}
+
+    {{ form.field(model, 'country').textInput({'maxlength' : true}) | raw }}
+
+    {{ form.field(model, 'region').textInput({'maxlength' : true}) | raw }}
+
+    {{ form.field(model, 'city').textInput({'maxlength' : true}) | raw }}
+
+    <div class="form-group">
+        {{ html.submitButton('Сохранить', {'class' : 'btn btn-success'}) | raw}}
+    </div>
+
+    {{ active_form_end() }}
+
+</div>

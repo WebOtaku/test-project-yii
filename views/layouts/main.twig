@@ -1,0 +1,35 @@
+{# @var yii\web\View $this #}
+{# @var string $content #}
+
+{{ use('app/assets/AppAsset') }}
+{{ use('app/widgets/Alert') }}
+{{ use('yii/bootstrap5/Breadcrumbs') }}
+
+{{ register_asset_bundle('app/assets/AppAsset') }}  
+
+{{ void(this.registerCsrfMetaTags()) }}
+{{ void(this.registerMetaTag({'charset' : app.charset}, 'charset')) }}
+{{ void(this.registerMetaTag({'name' : 'viewport', 'content' : 'width=device-width, initial-scale=1, shrink-to-fit=no'})) }}
+{{ void(this.registerMetaTag({'name' : 'description', 'content' : this.params['meta_description'] ?? ''})) }}
+{{ void(this.registerMetaTag({'name' : 'keywords', 'content' : this.params['meta_keywords'] ?? ''})) }}
+{{ void(this.registerLinkTag({'rel' : 'icon', 'type' : 'image/x-icon', 'href' : Yii.getAlias('@web/favicon.ico')})) }}
+
+{{ void(this.beginPage()) }}
+<!DOCTYPE html>
+<html lang="{{ app.language }}" class="h-100">
+    <head>
+        <title>{{ html.encode(this.title) | raw }}</title>
+        {{ void(this.head) }}
+    </head>
+    <body class="d-flex flex-column h-100">
+        {{ void(this.beginBody()) }}
+        <main id="main" class="flex-shrink-0">
+            <div class="container">
+                {{ breadcrumbs_widget({'links' : this.params['breadcrumbs']}) }}
+                {{ content | raw}}
+            </div>
+        </main>
+        {{ void(this.endBody()) }}
+    </body>
+</html>
+{{ void(this.endPage()) }}

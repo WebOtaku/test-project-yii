@@ -1,0 +1,40 @@
+{{ use('app/models/IpInfo') }}
+{{ use('yii/helpers/Url') }}
+{{ use('yii/grid/ActionColumn') }}
+{{ use('app/widgets/CustomGridView') }}
+{{ use('yii/grid/SerialColumn') }}
+
+{# @var yii\web\View $this #}
+{# @var app\models\IpInfoSearch $searchModel #}
+{# @var yii\data\ActiveDataProvider $dataProvider #}
+
+{{ set(this, 'title', 'Список IP адресов') }}
+
+{% set params = this.params|merge({'breadcrumbs' : [
+    this.title
+]}) %}
+
+{{ set(this, 'params', params) }}
+
+<div class="ip-info-index">
+    <h1>{{ html.encode(this.title) }}</h1>
+    <p>
+        {{ html.a('Добавить IP', ['create'], {'class' : 'btn btn-success'}) | raw }}
+    </p>
+    
+    {{ custom_grid_view_widget({
+        'dataProvider' : dataProvider,
+        'filterModel' : searchModel,
+        'columns' : [
+            {'class' : "\\yii\\grid\\SerialColumn"},
+            'ip',
+            'country',
+            'region',
+            'city',
+            {
+                'class' : ActionColumn.className(),
+                'urlCreator' : urlCreator()
+            },
+        ],
+    }) | raw }}
+</div>
