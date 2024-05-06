@@ -1,8 +1,13 @@
 {{ use('app/models/IpInfo') }}
 {{ use('yii/helpers/Url') }}
-{{ use('yii/grid/ActionColumn') }}
-{{ use('app/widgets/CustomGridView') }}
+
+{# use('yii/grid/GridView') #}
+{{ use('kartik/grid/GridView') }}
+{# use('app/widgets/CustomGridView') #}
 {{ use('yii/grid/SerialColumn') }}
+{# use('yii/grid/ActionColumn') #}
+{{ use('kartik/grid/ActionColumn') }}
+{# use('kartik/grid/CheckboxColumn') #}
 
 {# @var yii\web\View $this #}
 {# @var app\models\IpInfoSearch $searchModel #}
@@ -17,12 +22,13 @@
 {{ set(this, 'params', params) }}
 
 <div class="ip-info-index">
-    <h1>{{ html.encode(this.title) }}</h1>
-    <p>
-        {{ html.a(ADD_BTN_STR, ['create'], {'class' : 'btn btn-success'}) | raw }}
-    </p>
+    {# <h1>{{ html.encode(this.title) }}</h1> #}
     
-    {{ custom_grid_view_widget({
+    {# <p>
+        {{ html.a(ADD_BTN_STR, ['create'], {'class' : 'btn btn-success'}) | raw }}
+    </p> #}
+    
+    {# custom_grid_view_widget({
         'dataProvider' : dataProvider,
         'filterModel' : searchModel,
         'columns' : [
@@ -35,6 +41,53 @@
                 'class' : ActionColumn.className(),
                 'urlCreator' : urlCreator()
             },
+        ],
+    }) | raw #}
+
+    {{ grid_view_widget({
+        'id' : 'kv-grid',
+        'dataProvider' : dataProvider,
+        'filterModel' : searchModel,
+        'headerContainer' : {'class' : 'kv-table-header'},
+        'responsive' : true,
+        'hover' : true,
+        'panel' : {
+            'after' : false,
+            'heading' : '<i class="fas fa-book"></i>  ' ~ html.encode(this.title),
+            'type' : 'primary',
+            'before' : '<div style="padding-top: 7px;"><em>* Размер столбцов таблицы меняется так же, как таблицы - перетаскиванием края столбцов.</em></div>',
+        },
+        'exportConfig' : {
+            'csv' : [],
+            'xls' : [],
+        },
+        'toolbar' : [
+            {
+                'content' :
+                    html.a(ADD_BTN_STR, ['create'], {'class' : 'btn btn-success'}) 
+                    ~ ' ' ~ 
+                    html.a('<i class="fas fa-redo"></i>', ['/ip-info'], {
+                        'class' : 'btn btn-outline-secondary',
+                        'title' : 'Сбросить параметры списка',
+                        'data-pjax' : 0, 
+                    }), 
+                'options' : {'class' : 'btn-group mr-2 me-2'}
+            },
+            '{export}',
+            '{toggleData}'
+        ],
+        'toggleDataContainer' : {'class' : 'btn-group mr-2 me-2'},
+        'exportContainer' : {'class' : 'btn-group mr-2 me-2'},
+        'columns' : [
+            {'class' : "\\yii\\grid\\SerialColumn"},
+            'ip',
+            'country',
+            'region',
+            'city',
+            {
+                'class' : ActionColumn.className(),
+                'urlCreator' : urlCreator()
+            }
         ],
     }) | raw }}
 </div>

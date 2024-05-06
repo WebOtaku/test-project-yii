@@ -27,7 +27,6 @@ class CustomGridView extends GridView
         $pager['pagination'] = $pagination;
         $pager['view'] = $this->getView();
 
-
         return $class::widget($pager);
     }
 

@@ -5,7 +5,7 @@
 {{ use('app/widgets/Alert') }}
 {{ use('yii/bootstrap5/Breadcrumbs') }}
 
-{{ register_asset_bundle('app/assets/AppAsset') }}  
+{{ register_asset_bundle('app/assets/AppAsset') }}
 
 {{ void(this.registerCsrfMetaTags()) }}
 {{ void(this.registerMetaTag({'charset' : app.charset}, 'charset')) }}
@@ -13,6 +13,7 @@
 {{ void(this.registerMetaTag({'name' : 'description', 'content' : this.params['meta_description'] ?? ''})) }}
 {{ void(this.registerMetaTag({'name' : 'keywords', 'content' : this.params['meta_keywords'] ?? ''})) }}
 {{ void(this.registerLinkTag({'rel' : 'icon', 'type' : 'image/x-icon', 'href' : Yii.getAlias('@web/favicon.ico')})) }}
+{# void(this.registerLinkTag({'rel' : 'stylesheet', 'href' : 'https://use.fontawesome.com/releases/v5.3.1/css/all.css' })) #}
 
 {{ void(this.beginPage()) }}
 <!DOCTYPE html>
@@ -20,6 +21,7 @@
     <head>
         <title>{{ html.encode(this.title) | raw }}</title>
         {{ void(this.head) }}
+        <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="d-flex flex-column h-100">
         {{ void(this.beginBody()) }}

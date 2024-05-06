@@ -48,6 +48,8 @@ $config = [
                         'IpInfo' => ['class' => '\app\models\IpInfo'],
                         'Url' => ['class' => '\yii\helpers\Url'],
                         'ActionColumn' => ['class' => '\yii\grid\ActionColumn'],
+                        //'GridView' => ['class' => '\yii\grid\GridView'],
+                        'GridView' => ['class' => '\kartik\grid\GridView'],
                         'CustomGridView' => ['class' => '\app\widgets\CustomGridView'],
                         'SerialColumn' => ['class' => '\yii\grid\SerialColumn'],
                         'DetailView' => ['class' => '\yii\widgets\DetailView']
@@ -97,13 +99,23 @@ $config = [
         ],
         'db' => $db,
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => false,
             'enableStrictParsing' => false,
             'rules' => [],
         ],
     ],
     'params' => $params,
+    'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to  
+            // use your own export download action or custom translation 
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
+    ],
 ];
 
 if (YII_ENV_DEV) {
